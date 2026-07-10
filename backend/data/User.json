@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "701d0618ecfaf2ed7ec8e26d",
+    "username": "admin",
+    "email": "admin@food.com",
+    "password": "$2a$10$kBVrQWIm5vrlNQld8qYRYulrHDTMjpWpWeBsS9mauKEK1l5dnMz2O",
+    "role": "admin",
+    "createdAt": "2026-07-07T05:57:18.229Z",
+    "updatedAt": "2026-07-07T05:57:18.231Z"
+  },
+  {
+    "_id": "7e7666bcd241a17c7cbaee96",
+    "username": "chef",
+    "email": "chef@food.com",
+    "password": "$2a$10$OR7jWEkT7wzj.wyJtEG0G.p/maJlIDIJS4sx8pQwfPTnOFbnT1.UK",
+    "role": "chef",
+    "createdAt": "2026-07-07T05:57:18.433Z",
+    "updatedAt": "2026-07-07T05:57:18.433Z"
+  }
+]
