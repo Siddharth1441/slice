@@ -137,7 +137,7 @@ export default function CartView() {
                 <div>
                   <h4 className="font-bold text-white leading-tight">{item.name}</h4>
                   <span className="text-brand-500 text-sm font-semibold">
-                    ₹{item.price.toFixed(2)} each
+                    {formatCurrency(item.price)} each
                   </span>
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function CartView() {
 
                 <div className="text-right shrink-0 min-w-[70px]">
                   <span className="font-extrabold text-white text-base">
-                    ₹{(item.price * item.quantity).toFixed(2)}
+                    {formatCurrency(item.price * item.quantity)}
                   </span>
                 </div>
 
@@ -197,18 +197,18 @@ export default function CartView() {
           <div className="space-y-3.5 text-sm border-b border-white/5 pb-5">
             <div className="flex justify-between text-slate-400">
               <span>Subtotal</span>
-              <span className="font-medium text-white">₹{subtotal.toFixed(2)}</span>
+              <span className="font-medium text-white">{formatCurrency(subtotal)}</span>
             </div>
             <div className="flex justify-between text-slate-400">
               <span>Delivery Charge</span>
               <span className="font-medium text-white">
-                {delivery > 0 ? `₹${delivery.toFixed(2)}` : 'FREE'}
+                {delivery > 0 ? formatCurrency(delivery) : 'FREE'}
               </span>
             </div>
             <div className="flex justify-between text-base font-bold text-white pt-2">
               <span>Grand Total</span>
               <span className="text-xl text-brand-500 font-extrabold">
-                ₹{grandTotal.toFixed(2)}
+                {formatCurrency(grandTotal)}
               </span>
             </div>
           </div>

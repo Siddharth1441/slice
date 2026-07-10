@@ -260,7 +260,7 @@ export default function TrackOrder() {
                     <span className="text-slate-300 font-medium">{item.name}</span>
                   </div>
                   <span className="font-semibold text-white">
-                    ₹{(item.price * item.quantity).toFixed(2)}
+                    {formatCurrency(item.price * item.quantity)}
                   </span>
                 </div>
               ))}
@@ -269,7 +269,7 @@ export default function TrackOrder() {
             <div className="flex justify-between items-center border-t border-white/5 pt-4">
               <span className="text-sm text-slate-400 font-medium">Grand Total</span>
               <span className="text-lg font-extrabold text-brand-500">
-                ₹{order.totalAmount.toFixed(2)}
+                {formatCurrency(order.totalAmount)}
               </span>
             </div>
 

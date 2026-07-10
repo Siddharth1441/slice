@@ -3,7 +3,7 @@ import { useApp } from '../../context/AppContext';
 import { Search, ShoppingCart, Info, Award } from 'lucide-react';
 
 export default function MenuView() {
-  const { addToCart, settings, backendUrl } = useApp();
+  const { addToCart, settings, backendUrl, formatCurrency } = useApp();
   const [menu, setMenu] = useState([]);
   const [categories, setCategories] = useState(['All']);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -194,7 +194,7 @@ export default function MenuView() {
               {/* Product Footer */}
               <div className="flex items-center justify-between pt-5 mt-5 border-t border-white/5">
                 <span className="text-xl font-extrabold text-white">
-                  ₹{item.price.toFixed(2)}
+                  {formatCurrency(item.price)}
                 </span>
                 
                 <button

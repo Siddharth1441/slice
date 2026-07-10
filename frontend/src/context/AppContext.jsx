@@ -33,6 +33,16 @@ export const AppProvider = ({ children }) => {
 
   const [socket, setSocket] = useState(null);
 
+  const formatCurrency = (value) => {
+    const amount = Number(value || 0);
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  };
+
   // Synchronize cart with localStorage
   useEffect(() => {
     localStorage.setItem('food_cart', JSON.stringify(cart));
@@ -216,6 +226,7 @@ export const AppProvider = ({ children }) => {
         fetchSettings,
         socket,
         apiFetch,
+        formatCurrency,
         backendUrl,
       }}
     >

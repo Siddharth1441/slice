@@ -13,7 +13,6 @@ import {
   Check,
   X,
   Store,
-  DollarSign,
   Package,
   Calendar,
   AlertTriangle
@@ -339,12 +338,12 @@ export default function AdminDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="glass rounded-3xl p-6 border border-white/5 flex items-center space-x-4">
               <div className="w-12 h-12 rounded-2xl bg-orange-600/10 text-brand-500 flex items-center justify-center">
-                <DollarSign className="w-6 h-6" />
+                <Package className="w-6 h-6" />
               </div>
               <div>
                 <span className="text-xs text-slate-500 font-semibold block uppercase">Total Revenue</span>
                 <h4 className="text-2xl font-black text-white mt-0.5">
-                  ${salesReport.summary?.totalRevenue?.toFixed(2)}
+                  {formatCurrency(salesReport.summary?.totalRevenue)}
                 </h4>
               </div>
             </div>
@@ -368,9 +367,11 @@ export default function AdminDashboard() {
               <div>
                 <span className="text-xs text-slate-500 font-semibold block uppercase">Average Order Value</span>
                 <h4 className="text-2xl font-black text-white mt-0.5">
-                  ${salesReport.summary?.totalOrders > 0
-                    ? (salesReport.summary.totalRevenue / salesReport.summary.totalOrders).toFixed(2)
-                    : '0.00'}
+                  {formatCurrency(
+                    salesReport.summary?.totalOrders > 0
+                      ? salesReport.summary.totalRevenue / salesReport.summary.totalOrders
+                      : 0
+                  )}
                 </h4>
               </div>
             </div>
@@ -398,7 +399,7 @@ export default function AdminDashboard() {
                       <tr key={day.date} className="hover:bg-white/5 transition-colors text-slate-300">
                         <td className="py-3 font-semibold">{day.date}</td>
                         <td className="py-3">{day.count}</td>
-                        <td className="py-3 text-right text-white font-extrabold">${day.revenue.toFixed(2)}</td>
+                        <td className="py-3 text-right text-white font-extrabold">{formatCurrency(day.revenue)}</td>
                       </tr>
                     ))}
                     {salesReport.dailySales?.length === 0 && (
@@ -432,7 +433,7 @@ export default function AdminDashboard() {
                       <tr key={mon.month} className="hover:bg-white/5 transition-colors text-slate-300">
                         <td className="py-3 font-semibold">{mon.month}</td>
                         <td className="py-3">{mon.count}</td>
-                        <td className="py-3 text-right text-white font-extrabold">${mon.revenue.toFixed(2)}</td>
+                        <td className="py-3 text-right text-white font-extrabold">{formatCurrency(mon.revenue)}</td>
                       </tr>
                     ))}
                     {salesReport.monthlySales?.length === 0 && (
@@ -463,7 +464,7 @@ export default function AdminDashboard() {
                     <tr key={item.id} className="hover:bg-white/5 transition-colors">
                       <td className="py-3.5 font-semibold text-white">{item.name}</td>
                       <td className="py-3.5">{item.quantity}</td>
-                      <td className="py-3.5 text-right text-brand-500 font-extrabold">${item.revenue.toFixed(2)}</td>
+                      <td className="py-3.5 text-right text-brand-500 font-extrabold">{formatCurrency(item.revenue)}</td>
                     </tr>
                   ))}
                   {salesReport.popularItems?.length === 0 && (
@@ -510,7 +511,7 @@ export default function AdminDashboard() {
                     <tr key={item._id} className="hover:bg-white/5 transition-colors">
                       <td className="py-4 px-6 font-semibold text-white">{item.name}</td>
                       <td className="py-4 px-6">{item.category}</td>
-                      <td className="py-4 px-6 font-semibold">${item.price.toFixed(2)}</td>
+                      <td className="py-4 px-6 font-semibold">{formatCurrency(item.price)}</td>
                       <td className="py-4 px-6">
                         <span
                           className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-md ${
@@ -584,7 +585,7 @@ export default function AdminDashboard() {
                           ))}
                         </ul>
                       </td>
-                      <td className="py-4 px-6 font-bold text-white">${order.totalAmount.toFixed(2)}</td>
+                      <td className="py-4 px-6 font-bold text-white">{formatCurrency(order.totalAmount)}</td>
                       <td className="py-4 px-6">
                         <span
                           className={`text-[10px] font-bold uppercase px-2 py-1 rounded-lg border ${
@@ -670,7 +671,7 @@ export default function AdminDashboard() {
               
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-400">Flat Delivery Charge ($)</label>
+                <label className="text-xs font-semibold text-slate-400">Flat Delivery Charge (₹)</label>
                 <input
                   type="number"
                   required
@@ -757,7 +758,7 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Price ($)</label>
+                  <label className="text-xs font-semibold text-slate-400">Price (₹)</label>
                   <input
                     type="number"
                     step="0.01"
