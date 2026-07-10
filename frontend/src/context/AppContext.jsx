@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const backendUrl = 'http://localhost:5000';
+  const backendUrl = 'https://slice-2.onrender.com';
 
   // State Declarations
   const [cart, setCart] = useState(() => {
