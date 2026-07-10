@@ -4,18 +4,18 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-import connectDB from './config/db.js';
+import connectDB from './src/config/db.js';
 
 // Route imports
-import authRoutes from './routes/authRoutes.js';
-import menuRoutes from './routes/menuRoutes.js';
-import orderRoutes from './routes/orderRoutes.js';
-import settingsRoutes from './routes/settingsRoutes.js';
+import authRoutes from './src/routes/authRoutes.js';
+import menuRoutes from './src/routes/menuRoutes.js';
+import orderRoutes from './src/routes/orderRoutes.js';
+import settingsRoutes from './src/routes/settingsRoutes.js';
 
 // Models for seeding
-import User from './models/User.js';
-import MenuItem from './models/MenuItem.js';
-import Settings from './models/Settings.js';
+import User from './src/models/User.js';
+import MenuItem from './src/models/MenuItem.js';
+import Settings from './src/models/Settings.js';
 
 // Load env vars
 dotenv.config();

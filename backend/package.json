@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Backend API for Multi-Role Food Ordering System",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
