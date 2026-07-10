@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export default function AdminDashboard() {
-  const { auth, logoutUser, apiFetch } = useApp();
+  const { auth, logoutUser, apiFetch, formatCurrency } = useApp();
   const navigate = useNavigate();
 
   // Tab control
