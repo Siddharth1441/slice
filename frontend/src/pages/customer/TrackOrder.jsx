@@ -4,7 +4,7 @@ import { useApp } from '../../context/AppContext';
 import { Check, ClipboardList, Flame, Utensils, Award, Search, Sparkles, MessageSquareDot } from 'lucide-react';
 
 export default function TrackOrder() {
-  const { socket, backendUrl } = useApp();
+  const { socket, backendUrl, formatCurrency } = useApp();
   const [searchParams] = useSearchParams();
   
   const [orderIdInput, setOrderIdInput] = useState('');
