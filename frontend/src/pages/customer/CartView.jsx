@@ -4,7 +4,7 @@ import { useApp } from '../../context/AppContext';
 import { Plus, Minus, Trash2, ArrowLeft, ArrowRight, ClipboardCheck } from 'lucide-react';
 
 export default function CartView() {
-  const { cart, updateCartQuantity, removeFromCart, clearCart, settings, backendUrl } = useApp();
+  const { cart, updateCartQuantity, removeFromCart, clearCart, settings, backendUrl, formatCurrency } = useApp();
   const navigate = useNavigate();
 
   // Form states
