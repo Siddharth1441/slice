@@ -101,19 +101,19 @@ export default function TrackOrder() {
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
           Track Your <span className="text-gradient-orange">Order Live</span>
         </h1>
-        <p className="text-slate-400 text-sm max-w-md mx-auto mb-6">
+        <p className="text-body text-sm max-w-md mx-auto mb-6">
           Enter your Order ID to monitor preparation status, chef acceptance, and pickup readiness.
         </p>
 
         {/* Input box */}
         <form onSubmit={handleSearch} className="relative w-full max-w-lg mx-auto group">
-          <Search className="absolute left-4 top-3.5 w-5 h-5 text-slate-400 group-focus-within:text-brand-500 transition-colors" />
+          <Search className="absolute left-4 top-3.5 w-5 h-5 text-muted group-focus-within:text-brand-500 transition-colors" />
           <input
             type="text"
             placeholder="Paste your 24-character Order ID here..."
             value={orderIdInput}
             onChange={(e) => setOrderIdInput(e.target.value)}
-            className="w-full bg-slate-900 border border-white/10 rounded-2xl py-3.5 pl-12 pr-28 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
+            className="w-full bg-input-background border border-input-border rounded-2xl py-3.5 pl-12 pr-28 text-sm text-heading placeholder:text-muted focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
           />
           <button
             type="submit"
@@ -128,7 +128,7 @@ export default function TrackOrder() {
       {loading && (
         <div className="text-center py-10">
           <div className="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400 text-sm">Fetching live order status...</p>
+          <p className="text-body text-sm">Fetching live order status...</p>
         </div>
       )}
 
@@ -142,7 +142,7 @@ export default function TrackOrder() {
       {order && !loading && (
         <div className="space-y-6">
           {/* Order Details & Alert */}
-          <div className="glass-premium rounded-3xl p-6 md:p-8 space-y-6 border border-white/5 relative overflow-hidden">
+          <div className="glass-premium rounded-3xl p-6 md:p-8 space-y-6 border border-border relative overflow-hidden">
             {statusAnimation && (
               <div className="absolute inset-0 bg-brand-500/5 animate-pulse border border-brand-500 pointer-events-none rounded-3xl"></div>
             )}
@@ -173,11 +173,11 @@ export default function TrackOrder() {
                 {/* Desktop timeline tracker */}
                 <div className="relative hidden md:flex items-center justify-between">
                   {/* Background progress bar */}
-                  <div className="absolute left-0 top-6 w-full h-[3px] bg-white/5 -z-10"></div>
+                  <div className="absolute left-0 top-6 w-full h-0.75 bg-white/5 -z-10"></div>
                   
                   {/* Colored progress bar */}
                   <div
-                    className="absolute left-0 top-6 h-[3px] bg-gradient-to-r from-brand-600 to-brand-500 -z-10 transition-all duration-1000"
+                    className="absolute left-0 top-6 h-0.75 bg-linear-to-r from-brand-600 to-brand-500 -z-10 transition-all duration-1000"
                     style={{ width: `${(activeIndex / (statuses.length - 1)) * 100}%` }}
                   ></div>
 
@@ -192,18 +192,18 @@ export default function TrackOrder() {
                         <div
                           className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
                             isCompleted
-                              ? 'bg-brand-500 border-brand-500 text-white'
+                              ? 'bg-brand-500 border-brand-500 text-text-on-primary'
                               : isActive
-                              ? 'bg-slate-900 border-brand-500 text-brand-500 shadow-lg shadow-brand-500/20 scale-110'
-                              : 'bg-slate-950 border-white/10 text-slate-600'
+                              ? 'bg-card border-brand-500 text-brand-500 shadow-lg shadow-brand-500/20 scale-110'
+                              : 'bg-card border-border text-muted'
                           }`}
                         >
-                          {isCompleted ? <Check className="w-5 h-5 stroke-[3]" /> : <StepIcon className="w-5 h-5" />}
+                          {isCompleted ? <Check className="w-5 h-5 stroke-3" /> : <StepIcon className="w-5 h-5" />}
                         </div>
-                        <h4 className={`text-sm font-bold mt-3 ${isActive ? 'text-brand-500' : 'text-slate-300'}`}>
+                        <h4 className={`text-sm font-bold mt-3 ${isActive ? 'text-brand-500' : 'text-body'}`}>
                           {step.label}
                         </h4>
-                        <p className="text-[11px] text-slate-500 mt-1 max-w-[120px] leading-tight">
+                        <p className="text-[11px] text-slate-500 mt-1 max-w-30 leading-tight">
                           {step.desc}
                         </p>
                       </div>
@@ -214,7 +214,7 @@ export default function TrackOrder() {
                 {/* Mobile list timeline tracker */}
                 <div className="md:hidden space-y-6 relative pl-8">
                   {/* Progress Line */}
-                  <div className="absolute left-4 top-2 bottom-2 w-[2px] bg-white/10"></div>
+                  <div className="absolute left-4 top-2 bottom-2 w-0.5 bg-white/10"></div>
 
                   {statuses.map((step, idx) => {
                     const StepIcon = step.icon;
@@ -226,16 +226,16 @@ export default function TrackOrder() {
                         <div
                           className={`absolute -left-7 w-6 h-6 rounded-full flex items-center justify-center border transition-all ${
                             isCompleted
-                              ? 'bg-brand-500 border-brand-500 text-white'
+                              ? 'bg-brand-500 border-brand-500 text-text-on-primary'
                               : isActive
-                              ? 'bg-slate-950 border-brand-500 text-brand-500 scale-110'
-                              : 'bg-slate-950 border-white/10 text-slate-600'
+                              ? 'bg-card border-brand-500 text-brand-500 scale-110'
+                              : 'bg-card border-border text-muted'
                           }`}
                         >
-                          {isCompleted ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : <StepIcon className="w-3 h-3" />}
+                          {isCompleted ? <Check className="w-3.5 h-3.5 stroke-3" /> : <StepIcon className="w-3 h-3" />}
                         </div>
                         <div>
-                          <h4 className={`text-sm font-bold ${isActive ? 'text-brand-500' : 'text-slate-300'}`}>
+                          <h4 className={`text-sm font-bold ${isActive ? 'text-brand-500' : 'text-body'}`}>
                             {step.label}
                           </h4>
                           <p className="text-xs text-slate-500 mt-0.5">{step.desc}</p>
@@ -249,17 +249,17 @@ export default function TrackOrder() {
           </div>
 
           {/* Order Details & Summary */}
-          <div className="glass rounded-3xl p-6 md:p-8 border border-white/5">
-            <h3 className="text-lg font-bold text-white mb-4">Items Ordered</h3>
+          <div className="glass rounded-3xl p-6 md:p-8 border border-border">
+            <h3 className="text-lg font-bold text-heading mb-4">Items Ordered</h3>
             
             <div className="divide-y divide-white/5 space-y-3.5 pb-4">
               {order.items.map((item) => (
                 <div key={item._id} className="flex justify-between items-center text-sm pt-3.5">
                   <div className="flex items-center space-x-2">
                     <span className="font-bold text-brand-500">x{item.quantity}</span>
-                    <span className="text-slate-300 font-medium">{item.name}</span>
+                    <span className="text-body font-medium">{item.name}</span>
                   </div>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-heading">
                     {formatCurrency(item.price * item.quantity)}
                   </span>
                 </div>
@@ -267,21 +267,21 @@ export default function TrackOrder() {
             </div>
 
             <div className="flex justify-between items-center border-t border-white/5 pt-4">
-              <span className="text-sm text-slate-400 font-medium">Grand Total</span>
+              <span className="text-sm text-body font-medium">Grand Total</span>
               <span className="text-lg font-extrabold text-brand-500">
                 {formatCurrency(order.totalAmount)}
               </span>
             </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-between bg-slate-950/40 border border-white/5 p-4 rounded-2xl">
+            <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-between bg-surface border border-border p-4 rounded-2xl">
               <div className="flex items-center space-x-3 text-left">
                 <MessageSquareDot className="w-6 h-6 text-brand-500 shrink-0" />
                 <div>
-                  <h5 className="text-xs font-bold text-white">Need support with this order?</h5>
-                  <p className="text-[11px] text-slate-500">Call customer service and quote your Order ID.</p>
+                  <h5 className="text-xs font-bold text-heading">Need support with this order?</h5>
+                  <p className="text-[11px] text-body">Call customer service and quote your Order ID.</p>
                 </div>
               </div>
-              <span className="text-xs font-semibold text-slate-300 bg-white/5 py-1.5 px-3 rounded-lg border border-white/5">
+              <span className="text-xs font-semibold text-heading bg-offer py-1.5 px-3 rounded-lg border border-border">
                 📞 +916375851337
               </span>
             </div>
@@ -291,11 +291,11 @@ export default function TrackOrder() {
 
       {/* No Order Located view */}
       {!order && !loading && (
-        <div className="text-center py-16 bg-slate-900/30 border border-white/5 rounded-3xl">
-          <div className="w-16 h-16 bg-slate-950/80 border border-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <div className="text-center py-16 bg-surface border border-border rounded-3xl">
+          <div className="w-16 h-16 bg-brand-50 border border-border rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Sparkles className="w-6 h-6 text-brand-500" />
           </div>
-          <p className="text-slate-400 text-sm max-w-xs mx-auto">
+          <p className="text-body text-sm max-w-xs mx-auto">
             Place an order to see live updates, or enter a valid Order ID in the search bar above.
           </p>
         </div>

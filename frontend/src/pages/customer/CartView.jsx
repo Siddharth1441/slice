@@ -82,11 +82,11 @@ export default function CartView() {
   if (cart.length === 0) {
     return (
       <div className="max-w-4xl mx-auto px-6 py-20 text-center animate-slide-up">
-        <div className="w-20 h-20 bg-slate-900 border border-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Trash2 className="w-8 h-8 text-slate-500" />
+        <div className="w-20 h-20 bg-surface border border-border rounded-full flex items-center justify-center mx-auto mb-6">
+          <Trash2 className="w-8 h-8 text-muted" />
         </div>
-        <h2 className="text-2xl font-bold mb-3">Your Cart is Empty</h2>
-        <p className="text-slate-400 mb-8 max-w-sm mx-auto">
+        <h2 className="text-2xl font-bold mb-3 text-heading">Your Cart is Empty</h2>
+        <p className="text-body mb-8 max-w-sm mx-auto">
           Looks like you haven't added anything to your cart yet. Head back to the menu to explore.
         </p>
         <Link
@@ -105,7 +105,7 @@ export default function CartView() {
       <div className="mb-10">
         <Link
           to="/"
-          className="inline-flex items-center space-x-2 text-slate-400 hover:text-white text-sm font-medium transition-colors"
+          className="inline-flex items-center space-x-2 text-body hover:text-heading text-sm font-medium transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Menu</span>
@@ -121,21 +121,21 @@ export default function CartView() {
           {cart.map((item) => (
             <div
               key={item.menuItem}
-              className="glass rounded-3xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-white/5"
+              className="glass rounded-3xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-border"
             >
               {/* Product Info */}
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-slate-900 border border-white/5 shrink-0">
+                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-surface border border-border shrink-0">
                   {item.image ? (
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs text-slate-600">
+                    <div className="w-full h-full flex items-center justify-center text-xs text-muted bg-surface">
                       No Image
                     </div>
                   )}
                 </div>
                 <div>
-                  <h4 className="font-bold text-white leading-tight">{item.name}</h4>
+                  <h4 className="font-bold text-heading leading-tight">{item.name}</h4>
                   <span className="text-brand-500 text-sm font-semibold">
                     {formatCurrency(item.price)} each
                   </span>
@@ -144,26 +144,26 @@ export default function CartView() {
 
               {/* Quantity Counter & Delete */}
               <div className="flex items-center justify-between sm:justify-end gap-6">
-                <div className="flex items-center space-x-1.5 bg-slate-950/80 border border-white/10 rounded-2xl p-1">
+                <div className="flex items-center space-x-1.5 bg-surface border border-border rounded-2xl p-1">
                   <button
                     onClick={() => updateCartQuantity(item.menuItem, item.quantity - 1)}
-                    className="p-1.5 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition-colors"
+                    className="p-1.5 rounded-xl hover:bg-brand-50 text-body hover:text-heading transition-colors"
                   >
                     <Minus className="w-3.5 h-3.5" />
                   </button>
-                  <span className="font-bold text-sm w-8 text-center text-white select-none">
+                  <span className="font-bold text-sm w-8 text-center text-heading select-none">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() => updateCartQuantity(item.menuItem, item.quantity + 1)}
-                    className="p-1.5 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition-colors"
+                    className="p-1.5 rounded-xl hover:bg-brand-50 text-body hover:text-heading transition-colors"
                   >
                     <Plus className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="text-right shrink-0 min-w-[70px]">
-                  <span className="font-extrabold text-white text-base">
+                <div className="text-right shrink-0 min-w-17.5">
+                  <span className="font-extrabold text-heading text-base">
                     {formatCurrency(item.price * item.quantity)}
                   </span>
                 </div>
@@ -179,8 +179,8 @@ export default function CartView() {
           ))}
 
           {/* Quick Info Box */}
-          <div className="p-5 rounded-3xl bg-slate-900/30 border border-white/5 text-slate-400 text-xs leading-relaxed space-y-1">
-            <p className="font-semibold text-slate-300">Ordering Guidelines:</p>
+          <div className="p-5 rounded-3xl bg-surface border border-border text-body text-xs leading-relaxed space-y-1">
+            <p className="font-semibold text-heading">Ordering Guidelines:</p>
             <p>• Cooking starts immediately after the chef accepts the order.</p>
             <p>• You can track progress in real-time on our live status page.</p>
           </div>
@@ -188,24 +188,24 @@ export default function CartView() {
 
         {/* Checkout Form & Invoice (Col 5) */}
         <div className="lg:col-span-5 glass-premium rounded-3xl p-6 md:p-8 space-y-6">
-          <h3 className="text-xl font-bold text-white flex items-center space-x-2">
+          <h3 className="text-xl font-bold text-heading flex items-center space-x-2">
             <ClipboardCheck className="w-5 h-5 text-brand-500" />
             <span>Order Summary</span>
           </h3>
 
           {/* Invoice Breakdown */}
-          <div className="space-y-3.5 text-sm border-b border-white/5 pb-5">
-            <div className="flex justify-between text-slate-400">
+          <div className="space-y-3.5 text-sm border-b border-border pb-5">
+            <div className="flex justify-between text-body">
               <span>Subtotal</span>
-              <span className="font-medium text-white">{formatCurrency(subtotal)}</span>
+              <span className="font-medium text-heading">{formatCurrency(subtotal)}</span>
             </div>
-            <div className="flex justify-between text-slate-400">
+            <div className="flex justify-between text-body">
               <span>Delivery Charge</span>
-              <span className="font-medium text-white">
+              <span className="font-medium text-heading">
                 {delivery > 0 ? formatCurrency(delivery) : 'FREE'}
               </span>
             </div>
-            <div className="flex justify-between text-base font-bold text-white pt-2">
+            <div className="flex justify-between text-base font-bold text-heading pt-2">
               <span>Grand Total</span>
               <span className="text-xl text-brand-500 font-extrabold">
                 {formatCurrency(grandTotal)}
@@ -215,10 +215,10 @@ export default function CartView() {
 
           {/* Customer details form */}
           <form onSubmit={handleSubmitOrder} className="space-y-4">
-            <h4 className="font-bold text-white text-sm">Customer Details</h4>
+            <h4 className="font-bold text-heading text-sm">Customer Details</h4>
             
             <div className="space-y-1.5">
-              <label htmlFor="name" className="text-xs font-semibold text-slate-400">Your Full Name</label>
+              <label htmlFor="name" className="text-xs font-semibold text-body">Your Full Name</label>
               <input
                 id="name"
                 type="text"
@@ -227,12 +227,12 @@ export default function CartView() {
                 placeholder="Enter name (e.g. John Doe)"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500 placeholder:text-slate-600 disabled:opacity-50"
+                className="w-full bg-input-background border border-input-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500 placeholder:text-muted disabled:opacity-50"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label htmlFor="phone" className="text-xs font-semibold text-slate-400">Phone Number</label>
+              <label htmlFor="phone" className="text-xs font-semibold text-body">Phone Number</label>
               <input
                 id="phone"
                 type="tel"
@@ -241,13 +241,13 @@ export default function CartView() {
                 placeholder="Enter 10 digit number"
                 value={customerPhone}
                 onChange={(e) => setCustomerPhone(e.target.value)}
-                className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500 placeholder:text-slate-600 disabled:opacity-50"
+                className="w-full bg-input-background border border-input-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500 placeholder:text-muted disabled:opacity-50"
               />
             </div>
 
             {/* Error notifications */}
             {validationError && (
-              <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-medium">
+              <div className="p-3.5 rounded-xl bg-error/10 border border-error/20 text-error text-xs font-medium">
                 {validationError}
               </div>
             )}
@@ -258,10 +258,10 @@ export default function CartView() {
               disabled={isSubmitting || !settings.isStoreOpen}
               className={`w-full flex items-center justify-center space-x-2 py-4 rounded-2xl text-base font-bold transition-all shadow-lg ${
                 !settings.isStoreOpen
-                  ? 'bg-slate-800 text-slate-500 border border-white/5 cursor-not-allowed'
+                  ? 'bg-surface text-muted border border-border cursor-not-allowed'
                   : isSubmitting
-                  ? 'bg-brand-500/50 text-white cursor-wait'
-                  : 'bg-brand-500 hover:bg-brand-600 text-white shadow-brand-500/20 hover:scale-[1.01] hover:shadow-xl'
+                  ? 'bg-brand-500/50 text-text-on-primary cursor-wait'
+                  : 'bg-brand-500 hover:bg-brand-600 text-text-on-primary shadow-brand-500/20 hover:scale-[1.01] hover:shadow-xl'
               }`}
             >
               <span>{isSubmitting ? 'Placing Order...' : 'Place Order'}</span>

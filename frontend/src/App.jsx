@@ -15,7 +15,7 @@ export default function App() {
   return (
     <AppProvider>
       <Router>
-        <div className="flex flex-col min-h-screen bg-dark-950 text-slate-100 selection:bg-brand-500 selection:text-white">
+        <div className="flex flex-col min-h-screen bg-page text-heading selection:bg-brand-500 selection:text-white">
           {/* Main Navigation */}
           <Navbar />
 
@@ -42,7 +42,7 @@ export default function App() {
           </main>
 
           {/* Glassy Minimalist Footer */}
-          <footer className="py-6 border-t border-white/5 bg-slate-950/40 text-center text-xs text-slate-500">
+          <footer className="py-6 border-t border-divider bg-surface text-center text-xs text-body">
             <p>© {new Date().getFullYear()} cheesy slice Foods Inc. All rights reserved.</p>
           </footer>
         </div>

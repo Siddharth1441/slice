@@ -21,147 +21,55 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 glass border-b border-white/5 py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
-      {/* Brand Logo */}
-      <Link to="/" className="flex items-center space-x-2 select-none group">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-orange-400 flex items-center justify-center shadow-lg shadow-brand-600/30 transform group-hover:rotate-12 transition-transform duration-300">
-          <img className='rounded-2xl' src="https://ik.imagekit.io/boks6a8adw/logo.jpg" alt="" />
-        </div>
-        <span className="text-xl font-bold font-display tracking-tight text-white group-hover:text-brand-500 transition-colors">
-          cheesy slice<span className="text-brand-500"> pizza</span>
-        </span>
-      </Link>
-
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center space-x-8">
-        {navLinks.map((link) => {
-          const Icon = link.icon;
-          return (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="flex items-center space-x-2 text-slate-300 hover:text-white hover:translate-y-[-1px] transition-all"
-            >
-              <Icon className="w-4 h-4 text-brand-500" />
-              <span className="text-sm font-medium">{link.label}</span>
-            </Link>
-          );
-        })}
-
-        {/* Cart Link */}
-        <Link
-          to="/cart"
-          className="relative p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 transition-all group"
-        >
-          <ShoppingBag className="w-5 h-5 text-white group-hover:text-brand-500 transition-colors" />
-          {cartCount > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 bg-brand-500 text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center animate-bounce shadow-md">
-              {cartCount}
-            </span>
-          )}
+    <nav className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-brand-100/70 shadow-sm shadow-brand-500/5">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 h-20 flex items-center justify-between">
+        <Link to="/" className="flex items-center space-x-3 select-none">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-500 to-brand-600 flex items-center justify-center shadow-brand-500/20 shadow-lg">
+            <img className="w-7 h-7 rounded-xl" src="https://ik.imagekit.io/boks6a8adw/logo.jpg" alt="Cheesy Slice logo" />
+          </div>
+          <div className="space-y-0.5">
+            <p className="text-base font-semibold tracking-tight text-heading">Cheesy Slice</p>
+            <p className="text-xs text-muted uppercase tracking-[0.2em]">Pizza</p>
+          </div>
         </Link>
 
-        {/* Portal Access / Logout */}
-        {auth.isAuthenticated ? (
-          <div className="flex items-center space-x-4">
-            <Link
-              to={auth.user?.role === 'admin' ? '/admin' : '/chef'}
-              className="flex items-center space-x-2 py-2 px-4 rounded-xl bg-orange-600/20 hover:bg-orange-600/30 text-brand-500 border border-brand-500/20 transition-all font-medium text-sm"
-            >
-              <ShieldAlert className="w-4 h-4" />
-              <span>{auth.user?.role === 'admin' ? 'Admin Hub' : 'Chef Kitchen'}</span>
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="p-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/10 text-red-400 hover:text-red-300 transition-all"
-              title="Logout"
-            >
-              <LogOut className="w-5 h-5" />
-            </button>
-          </div>
-        ) : (
+        <div className="flex items-center gap-3">
+          <Link
+            to="/cart"
+            className="relative inline-flex items-center justify-center rounded-2xl border border-border bg-brand-50 p-3 text-brand-600 transition-all hover:bg-brand-100"
+          >
+            <ShoppingBag className="w-5 h-5" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-500 text-[10px] font-bold text-white px-1.5">
+                {cartCount}
+              </span>
+            )}
+          </Link>
+
           <Link
             to="/login"
-            className="flex items-center space-x-2 py-2.5 px-5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all text-sm font-medium"
+            className="hidden sm:inline-flex items-center justify-center rounded-2xl border border-brand-100 bg-white px-4 py-2 text-sm font-semibold text-heading transition-all hover:border-brand-200 hover:shadow-sm"
           >
-            <User className="w-4 h-4 text-slate-400" />
-            <span>Staff Portal</span>
+            Staff Portal
           </Link>
-        )}
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 lg:hidden"
+            aria-label="Open navigation menu"
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Toggle */}
-      <div className="flex items-center space-x-4 md:hidden">
-        <Link
-          to="/cart"
-          className="relative p-2 rounded-xl bg-white/5 border border-white/5"
-        >
-          <ShoppingBag className="w-5 h-5 text-white" />
-          {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-brand-500 text-white font-bold text-xs w-4 h-4 rounded-full flex items-center justify-center">
-              {cartCount}
-            </span>
-          )}
-        </Link>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-xl bg-white/5 text-slate-300 hover:text-white"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="absolute top-[73px] left-0 w-full glass border-b border-white/10 p-6 flex flex-col space-y-6 md:hidden animate-slide-up">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setIsOpen(false)}
-                className="flex items-center space-x-4 text-slate-300 hover:text-white font-medium py-2"
-              >
-                <Icon className="w-5 h-5 text-brand-500" />
-                <span>{link.label}</span>
-              </Link>
-            );
-          })}
-
-          <div className="h-px bg-white/5 my-2"></div>
-
-          {auth.isAuthenticated ? (
-            <div className="flex flex-col space-y-4">
-              <Link
-                to={auth.user?.role === 'admin' ? '/admin' : '/chef'}
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-orange-600/20 text-brand-500 border border-brand-500/20 font-medium text-sm w-full"
-              >
-                <ShieldAlert className="w-4 h-4" />
-                <span>{auth.user?.role === 'admin' ? 'Admin Hub' : 'Chef Kitchen'}</span>
-              </Link>
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  handleLogout();
-                }}
-                className="flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-red-500/10 text-red-400 border border-red-500/10 text-sm font-medium w-full"
-              >
-                <LogOut className="w-4 h-4" />
-                <span>Logout</span>
-              </button>
-            </div>
-          ) : (
-            <Link
-              to="/login"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center space-x-2 py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-sm font-medium w-full"
-            >
-              <User className="w-4 h-4 text-slate-400" />
-              <span>Staff Portal</span>
+        <div className="lg:hidden border-t border-brand-100/70 bg-white/95 backdrop-blur-xl">
+          <div className="max-w-7xl mx-auto px-6 py-4 space-y-3">
+            <Link to="/login" onClick={() => setIsOpen(false)} className="block rounded-2xl bg-brand-50 px-4 py-3 text-sm font-semibold text-brand-600 text-center">
+              Staff Portal
             </Link>
-          )}
+          </div>
         </div>
       )}
     </nav>

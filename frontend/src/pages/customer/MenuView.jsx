@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { Search, ShoppingCart, Info, Award } from 'lucide-react';
 
@@ -57,76 +58,82 @@ export default function MenuView() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-      {/* Announcement Banner */}
-      {settings.announcement && settings.announcement !== 'Welcome to Antigravity Foods! Enjoy our chef-crafted delights.' && (
-        <div className="mb-10 p-4 rounded-2xl bg-brand-500/10 border border-brand-500/20 flex items-center space-x-3 text-orange-200 text-sm animate-pulse-slow">
-          <Info className="w-5 h-5 text-brand-500 shrink-0" />
-          <span>{settings.announcement}</span>
-        </div>
-      )}
+    <div className="max-w-7xl mx-auto px-4 sm:px-5 md:px-6 lg:px-8 py-8 md:py-14">
+      <section className="relative overflow-hidden rounded-[3rem] bg-white shadow-[0_30px_70px_rgba(255,122,26,0.15)] border border-brand-100/80">
+        <div className="absolute inset-x-0 top-0 h-64 sm:h-72 bg-brand-50/80" />
+        <div className="absolute right-0 top-0 h-64 w-64 sm:h-72 sm:w-72 md:h-80 md:w-80 rounded-full bg-brand-100/80 blur-3xl" />
+        <div className="relative px-5 py-8 sm:px-6 md:px-10 lg:px-14 md:py-12">
+          <div className="text-center mx-auto max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 shadow-sm">
+              <Award className="w-4 h-4" />
+              Premium chef-crafted · Made fresh daily
+            </span>
+            <h1 className="mt-8 text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem] font-extrabold tracking-tight leading-[1.02] text-heading">
+              Satisfy Your <span className="text-gradient-orange">Cravings</span>
+            </h1>
+            <p className="mt-5 text-base sm:text-lg lg:text-xl text-body max-w-xl sm:max-w-2xl mx-auto leading-7 sm:leading-8">
+              Wood-fired pizzas, juicy burgers and handmade pasta — delivered warm, fast and full of flavor. Your next favorite bite is one tap away.
+            </p>
 
-      {/* Hero Header */}
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-brand-500 text-xs font-semibold uppercase tracking-wider mb-4">
-          <Award className="w-4 h-4" />
-          <span>Chef-Crafted Gastronomy</span>
-        </div>
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-          Satisfy Your <span className="text-gradient-orange">Cravings</span>
-        </h1>
-        <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
-          Welcome to <span className="text-white font-medium">{settings.storeName}</span>. Browse our curated selection of fresh ingredients, flame-grilled classics, and custom chef specials.
-        </p>
-      </div>
+            <div className="mt-8 flex justify-center">
+              <span className={`inline-flex items-center rounded-full px-5 py-3 text-sm font-semibold ${settings.isStoreOpen ? 'bg-success/10 text-success' : 'bg-error/10 text-error'}`}>
+                {settings.isStoreOpen ? 'Store Open' : 'Store Closed'}
+              </span>
+            </div>
 
-      {/* Search & Filter Bar */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-10">
-        {/* Search */}
-        <div className="relative w-full md:max-w-md group">
-          <Search className="absolute left-4 top-3.5 w-5 h-5 text-slate-400 group-focus-within:text-brand-500 transition-colors" />
-          <input
-            type="text"
-            placeholder="Search menu items (e.g. Pizza, Burger)..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-900 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
-          />
+            <div className="mt-8 w-full max-w-full sm:max-w-3xl mx-auto">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
+                <input
+                  type="text"
+                  placeholder="Search pizzas, burgers, pasta, drinks..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-card w-full rounded-full border border-border bg-white/95 py-4 pl-14 pr-5 text-sm sm:text-base text-heading placeholder:text-muted shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/10 transition-all"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mt-10 flex flex-col gap-4">
+        <div className="relative overflow-hidden rounded-[2rem] bg-brand-50/80 p-4 sm:p-5 shadow-[0_18px_50px_rgba(255,122,26,0.12)] border border-brand-100/80 w-full">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.22em] text-brand-500">Browse by category</p>
+          <div className="mt-4 flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-start">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+                  selectedCategory === cat
+                    ? 'bg-brand-500 text-white shadow-sm'
+                    : 'bg-white text-heading/90 hover:bg-brand-50'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex overflow-x-auto w-full md:w-auto no-scrollbar py-2 -mx-6 px-6 md:mx-0 md:px-0 space-x-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all whitespace-nowrap border ${
-                selectedCategory === cat
-                  ? 'bg-brand-500 border-brand-500 text-white shadow-lg shadow-brand-500/20'
-                  : 'bg-white/5 border-white/5 text-slate-400 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Store Closed Warning */}
       {!settings.isStoreOpen && (
-        <div className="mb-8 p-5 rounded-2xl bg-red-500/10 border border-red-500/20 text-center">
-          <p className="text-red-400 font-semibold mb-1">Store is Currently Closed</p>
-          <p className="text-slate-400 text-xs">You can still browse the menu, but ordering is temporarily disabled.</p>
+        <div className="mt-8 rounded-3xl bg-error/10 border border-error/20 p-5 text-center">
+          <p className="text-error font-semibold mb-1">Store is Currently Closed</p>
+          <p className="text-body text-xs">You can still browse the menu, but ordering is temporarily disabled.</p>
         </div>
       )}
 
       {/* Error State */}
       {error && (
         <div className="text-center py-12">
-          <p className="text-red-400 text-lg mb-4">Error loading menu: {error}</p>
+          <p className="text-error text-lg mb-4">Error loading menu: {error}</p>
           <button
             onClick={fetchMenu}
-            className="px-6 py-2 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 text-white"
+            className="px-6 py-2 rounded-2xl bg-card border border-border hover:bg-surface text-heading"
           >
             Retry
           </button>
@@ -135,34 +142,34 @@ export default function MenuView() {
 
       {/* Menu Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
           {[...Array(6)].map((_, idx) => (
             <div key={idx} className="glass-premium rounded-3xl p-5 animate-pulse space-y-4">
-              <div className="w-full aspect-video bg-slate-800 rounded-2xl"></div>
-              <div className="h-6 bg-slate-800 rounded w-2/3"></div>
-              <div className="h-4 bg-slate-800 rounded w-5/6"></div>
+              <div className="w-full aspect-video bg-surface rounded-2xl"></div>
+              <div className="h-6 bg-surface rounded w-2/3"></div>
+              <div className="h-4 bg-surface rounded w-5/6"></div>
               <div className="flex justify-between items-center pt-2">
-                <div className="h-6 bg-slate-800 rounded w-1/4"></div>
-                <div className="h-10 bg-slate-800 rounded w-1/3"></div>
+                <div className="h-6 bg-surface rounded w-1/4"></div>
+                <div className="h-10 bg-surface rounded w-1/3"></div>
               </div>
             </div>
           ))}
         </div>
       ) : menu.length === 0 ? (
-        <div className="text-center py-16 bg-slate-900/30 border border-white/5 rounded-3xl">
-          <p className="text-slate-400 text-lg mb-2">No menu items found</p>
-          <p className="text-slate-500 text-sm">Try modifying your category selection or search term.</p>
+        <div className="text-center py-16 bg-surface border border-border rounded-3xl mt-10">
+          <p className="text-body text-lg mb-2">No menu items found</p>
+          <p className="text-muted text-sm">Try modifying your category selection or search term.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
           {menu.map((item) => (
             <div
               key={item._id}
-              className="glass-premium rounded-3xl p-5 flex flex-col justify-between group hover:border-brand-500/30 transition-all duration-300 hover:translate-y-[-4px]"
+              className="glass-premium rounded-3xl p-5 flex flex-col justify-between group hover:border-brand-500/30 transition-all duration-300 hover:-translate-y-1"
             >
               {/* Product Header / Image */}
               <div className="space-y-4">
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-white/5">
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-surface border border-border">
                   {item.image ? (
                     <img
                       src={item.image}
@@ -171,29 +178,29 @@ export default function MenuView() {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-600 bg-slate-900">
+                    <div className="w-full h-full flex items-center justify-center text-muted bg-surface">
                       No Image Available
                     </div>
                   )}
-                  <span className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md border border-white/10 px-3 py-1 rounded-xl text-xs font-semibold text-slate-300 uppercase">
+                  <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-md border border-border px-3 py-1 rounded-xl text-xs font-semibold text-heading uppercase">
                     {item.category}
                   </span>
                 </div>
 
                 {/* Product Text */}
                 <div className="space-y-2">
-                  <h3 className="text-lg font-bold text-white group-hover:text-brand-500 transition-colors">
+                  <h3 className="text-lg font-bold text-heading group-hover:text-brand-500 transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-sm text-slate-400 line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-body line-clamp-2 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
               </div>
 
               {/* Product Footer */}
-              <div className="flex items-center justify-between pt-5 mt-5 border-t border-white/5">
-                <span className="text-xl font-extrabold text-white">
+              <div className="flex items-center justify-between pt-5 mt-5 border-t border-border">
+                <span className="text-xl font-extrabold text-heading">
                   {formatCurrency(item.price)}
                 </span>
                 
@@ -202,10 +209,10 @@ export default function MenuView() {
                   disabled={!settings.isStoreOpen || !item.isAvailable}
                   className={`flex items-center space-x-2 py-2.5 px-5 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                     !settings.isStoreOpen || !item.isAvailable
-                      ? 'bg-slate-800 text-slate-500 border border-white/5 cursor-not-allowed'
+                      ? 'bg-card text-muted border border-border cursor-not-allowed'
                       : addedItemIds[item._id]
-                      ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20'
-                      : 'bg-brand-500 hover:bg-brand-600 text-white shadow-lg shadow-brand-500/20 hover:scale-[1.02]'
+                      ? 'bg-success text-card shadow-lg shadow-success/20'
+                      : 'bg-brand-500 hover:bg-brand-600 text-card shadow-lg shadow-brand-500/20 hover:scale-[1.02]'
                   }`}
                 >
                   <ShoppingCart className="w-4 h-4" />
