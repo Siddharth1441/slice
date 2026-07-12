@@ -129,13 +129,13 @@ export default function LoginPortal() {
 
   return (
     <div className="max-w-md mx-auto px-6 py-16 md:py-24 animate-slide-up">
-      <div className="glass-premium rounded-3xl p-8 border border-white/5 relative overflow-hidden shadow-2xl">
+      <div className="glass-premium rounded-3xl p-8 border border-border relative overflow-hidden shadow-2xl">
         {/* Decorative lights */}
         <div className="absolute top-0 right-0 w-24 h-24 bg-brand-500/10 rounded-full blur-2xl"></div>
         
         {/* Tabs for Admin / Chef */}
         {!isForgotMode && (
-          <div className="flex bg-slate-950 p-1 rounded-2xl mb-8 border border-white/5">
+          <div className="flex bg-surface p-1 rounded-2xl mb-8 border border-border">
             <button
               onClick={() => {
                 setActiveTab('chef');
@@ -143,8 +143,8 @@ export default function LoginPortal() {
               }}
               className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl text-sm font-semibold transition-all ${
                 activeTab === 'chef'
-                  ? 'bg-slate-900 text-brand-500 border border-brand-500/20 shadow-md'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-white text-brand-500 border border-brand-500/20 shadow-md'
+                  : 'text-muted hover:text-heading'
               }`}
             >
               <ChefHat className="w-4 h-4" />
@@ -157,8 +157,8 @@ export default function LoginPortal() {
               }}
               className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl text-sm font-semibold transition-all ${
                 activeTab === 'admin'
-                  ? 'bg-slate-900 text-brand-500 border border-brand-500/20 shadow-md'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-white text-brand-500 border border-brand-500/20 shadow-md'
+                  : 'text-muted hover:text-heading'
               }`}
             >
               <Shield className="w-4 h-4" />
@@ -169,14 +169,14 @@ export default function LoginPortal() {
 
         {/* Title */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold font-display text-white">
+          <h2 className="text-2xl font-bold font-display text-heading">
             {isForgotMode
               ? 'Reset Staff Password'
               : activeTab === 'admin'
               ? 'Admin Login'
               : 'Chef Login'}
           </h2>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-muted mt-1">
             {isForgotMode
               ? `Verification for ${activeTab.toUpperCase()}`
               : `Access the ${activeTab.toUpperCase()} dashboard portal`}
@@ -199,23 +199,23 @@ export default function LoginPortal() {
         {!isForgotMode && (
           <form onSubmit={handleLoginSubmit} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-400">Username</label>
+              <label className="text-xs font-semibold text-muted">Username</label>
               <div className="relative">
-                <UserSquare2 className="absolute left-4 top-3.5 w-4 h-4 text-slate-500" />
+                <UserSquare2 className="absolute left-4 top-3.5 w-4 h-4 text-muted" />
                 <input
                   type="text"
                   required
                   placeholder="e.g. chef or admin"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                  className="w-full bg-surface border border-border rounded-2xl py-3 pl-12 pr-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
               <div className="flex justify-between items-center">
-                <label className="text-xs font-semibold text-slate-400">Password</label>
+                <label className="text-xs font-semibold text-muted">Password</label>
                 <button
                   type="button"
                   onClick={() => {
@@ -229,14 +229,14 @@ export default function LoginPortal() {
                 </button>
               </div>
               <div className="relative">
-                <KeyRound className="absolute left-4 top-3.5 w-4 h-4 text-slate-500" />
+                <KeyRound className="absolute left-4 top-3.5 w-4 h-4 text-muted" />
                 <input
                   type="password"
                   required
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                  className="w-full bg-surface border border-border rounded-2xl py-3 pl-12 pr-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                 />
               </div>
             </div>
@@ -258,16 +258,16 @@ export default function LoginPortal() {
             {resetStep === 1 ? (
               <form onSubmit={handleForgotRequest} className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Registered Email</label>
+                  <label className="text-xs font-semibold text-muted">Registered Email</label>
                   <div className="relative">
-                    <Mail className="absolute left-4 top-3.5 w-4 h-4 text-slate-500" />
+                    <Mail className="absolute left-4 top-3.5 w-4 h-4 text-muted" />
                     <input
                       type="email"
                       required
                       placeholder="e.g. chef@food.com or admin@food.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                      className="w-full bg-surface border border-border rounded-2xl py-3 pl-12 pr-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                     />
                   </div>
                 </div>
@@ -284,26 +284,26 @@ export default function LoginPortal() {
             ) : (
               <form onSubmit={handleResetSubmit} className="space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Verification Code</label>
+                  <label className="text-xs font-semibold text-muted">Verification Code</label>
                   <input
                     type="text"
                     required
                     placeholder="Enter generated code"
                     value={resetToken}
                     onChange={(e) => setResetToken(e.target.value)}
-                    className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                    className="w-full bg-surface border border-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">New Password</label>
+                  <label className="text-xs font-semibold text-muted">New Password</label>
                   <input
                     type="password"
                     required
                     placeholder="Minimum 6 characters"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                    className="w-full bg-surface border border-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                   />
                 </div>
 
@@ -317,26 +317,14 @@ export default function LoginPortal() {
                 </button>
               </form>
             )}
-
-            <button
-              onClick={() => {
-                setIsForgotMode(false);
-                setResetStep(1);
-                setError('');
-                setSuccess('');
-              }}
-              className="w-full text-center text-xs text-slate-500 hover:text-white mt-6 transition-colors"
-            >
-              Back to Login
-            </button>
           </div>
         )}
 
         {/* Seeding credentials tip */}
-        <div className="mt-8 pt-6 border-t border-white/5 text-[11px] text-slate-500 leading-relaxed text-center space-y-1">
-          <p className="font-semibold text-slate-400">Default Sandbox Credentials:</p>
-          <p>• Chef: <span className="text-slate-300">chef</span> / <span className="text-slate-300">chef123</span> (email: chef@food.com)</p>
-          <p>• Admin: <span className="text-slate-300">admin</span> / <span className="text-slate-300">admin123</span> (email: admin@food.com)</p>
+        <div className="mt-8 pt-6 border-t border-border text-[11px] text-body leading-relaxed text-center space-y-1">
+          <p className="font-semibold text-heading">Default Sandbox Credentials:</p>
+          <p>• Chef: <span className="text-muted">chef</span> / <span className="text-muted">chef123</span> (email: chef@food.com)</p>
+          <p>• Admin: <span className="text-muted">admin</span> / <span className="text-muted">admin123</span> (email: admin@food.com)</p>
         </div>
       </div>
     </div>

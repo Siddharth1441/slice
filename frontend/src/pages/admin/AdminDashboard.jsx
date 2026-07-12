@@ -256,14 +256,14 @@ export default function AdminDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-16 animate-slide-up">
       {/* Dashboard Top Title */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 pb-6 border-b border-white/5">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 pb-6 border-b border-border">
         <div>
-          <h1 className="text-3xl font-extrabold text-white flex items-center space-x-2">
+          <h1 className="text-3xl font-extrabold text-heading flex items-center space-x-2">
             <TrendingUp className="text-brand-500 w-8 h-8" />
             <span>Admin <span className="text-gradient-orange font-black">Control Hub</span></span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Welcome back, <span className="text-slate-200 font-semibold">@{auth.user.username}</span>
+          <p className="text-xs text-muted mt-1">
+            Welcome back, <span className="text-body font-semibold">@{auth.user.username}</span>
           </p>
         </div>
 
@@ -280,11 +280,11 @@ export default function AdminDashboard() {
       </div>
 
       {/* Tabs Selector */}
-      <div className="flex bg-slate-950 p-1.5 rounded-2xl mb-8 border border-white/5 overflow-x-auto no-scrollbar">
+      <div className="flex bg-surface p-1.5 rounded-2xl mb-8 border border-border overflow-x-auto no-scrollbar">
         <button
           onClick={() => setActiveTab('reports')}
           className={`flex items-center space-x-2 py-3 px-6 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
-            activeTab === 'reports' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-slate-400 hover:text-white'
+            activeTab === 'reports' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-muted hover:text-heading'
           }`}
         >
           <LayoutDashboard className="w-4 h-4" />
@@ -293,7 +293,7 @@ export default function AdminDashboard() {
         <button
           onClick={() => setActiveTab('menu')}
           className={`flex items-center space-x-2 py-3 px-6 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
-            activeTab === 'menu' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-slate-400 hover:text-white'
+            activeTab === 'menu' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-muted hover:text-heading'
           }`}
         >
           <UtensilsCrossed className="w-4 h-4" />
@@ -302,7 +302,7 @@ export default function AdminDashboard() {
         <button
           onClick={() => setActiveTab('orders')}
           className={`flex items-center space-x-2 py-3 px-6 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
-            activeTab === 'orders' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-slate-400 hover:text-white'
+            activeTab === 'orders' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-muted hover:text-heading'
           }`}
         >
           <ShoppingBag className="w-4 h-4" />
@@ -311,7 +311,7 @@ export default function AdminDashboard() {
         <button
           onClick={() => setActiveTab('settings')}
           className={`flex items-center space-x-2 py-3 px-6 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
-            activeTab === 'settings' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-slate-400 hover:text-white'
+            activeTab === 'settings' ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/25' : 'text-muted hover:text-heading'
           }`}
         >
           <SettingsIcon className="w-4 h-4" />
@@ -336,37 +336,37 @@ export default function AdminDashboard() {
         <div className="space-y-8 animate-slide-up">
           {/* Sales Report Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="glass rounded-3xl p-6 border border-white/5 flex items-center space-x-4">
+            <div className="glass rounded-3xl p-6 border border-border flex items-center space-x-4">
               <div className="w-12 h-12 rounded-2xl bg-orange-600/10 text-brand-500 flex items-center justify-center">
                 <Package className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-xs text-slate-500 font-semibold block uppercase">Total Revenue</span>
-                <h4 className="text-2xl font-black text-white mt-0.5">
+                <span className="text-xs text-muted font-semibold block uppercase">Total Revenue</span>
+                <h4 className="text-2xl font-black text-heading mt-0.5">
                   {formatCurrency(salesReport.summary?.totalRevenue)}
                 </h4>
               </div>
             </div>
 
-            <div className="glass rounded-3xl p-6 border border-white/5 flex items-center space-x-4">
+            <div className="glass rounded-3xl p-6 border border-border flex items-center space-x-4">
               <div className="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center">
                 <ShoppingBag className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-xs text-slate-500 font-semibold block uppercase">Completed Orders</span>
-                <h4 className="text-2xl font-black text-white mt-0.5">
+                <span className="text-xs text-muted font-semibold block uppercase">Completed Orders</span>
+                <h4 className="text-2xl font-black text-heading mt-0.5">
                   {salesReport.summary?.totalOrders}
                 </h4>
               </div>
             </div>
 
-            <div className="glass rounded-3xl p-6 border border-white/5 flex items-center space-x-4">
+            <div className="glass rounded-3xl p-6 border border-border flex items-center space-x-4">
               <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
                 <TrendingUp className="w-6 h-6" />
               </div>
               <div>
-                <span className="text-xs text-slate-500 font-semibold block uppercase">Average Order Value</span>
-                <h4 className="text-2xl font-black text-white mt-0.5">
+                <span className="text-xs text-muted font-semibold block uppercase">Average Order Value</span>
+                <h4 className="text-2xl font-black text-heading mt-0.5">
                   {formatCurrency(
                     salesReport.summary?.totalOrders > 0
                       ? salesReport.summary.totalRevenue / salesReport.summary.totalOrders
@@ -379,8 +379,8 @@ export default function AdminDashboard() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Daily Sales Table (Col 6) */}
-            <div className="lg:col-span-6 glass rounded-3xl p-6 border border-white/5">
-              <h3 className="text-lg font-bold text-white mb-4 flex items-center space-x-2">
+            <div className="lg:col-span-6 glass rounded-3xl p-6 border border-border">
+              <h3 className="text-lg font-bold text-heading mb-4 flex items-center space-x-2">
                 <Calendar className="w-5 h-5 text-brand-500" />
                 <span>Daily Sales Summary</span>
               </h3>
@@ -388,23 +388,23 @@ export default function AdminDashboard() {
               <div className="overflow-x-auto max-h-[300px] no-scrollbar">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500 pb-3">
+                    <tr className="border-b border-border text-[11px] font-bold uppercase tracking-wider text-muted pb-3">
                       <th className="py-2.5">Date</th>
                       <th className="py-2.5">Orders</th>
                       <th className="py-2.5 text-right">Revenue</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-white/5 text-sm">
+                  <tbody className="divide-y divide-border text-sm">
                     {salesReport.dailySales?.map((day) => (
-                      <tr key={day.date} className="hover:bg-white/5 transition-colors text-slate-300">
+                      <tr key={day.date} className="hover:bg-surface transition-colors text-body">
                         <td className="py-3 font-semibold">{day.date}</td>
                         <td className="py-3">{day.count}</td>
-                        <td className="py-3 text-right text-white font-extrabold">{formatCurrency(day.revenue)}</td>
+                        <td className="py-3 text-right text-heading font-extrabold">{formatCurrency(day.revenue)}</td>
                       </tr>
                     ))}
                     {salesReport.dailySales?.length === 0 && (
                       <tr>
-                        <td colSpan="3" className="text-center py-6 text-slate-500">No daily sales logs found</td>
+                        <td colSpan="3" className="text-center py-6 text-muted">No daily sales logs found</td>
                       </tr>
                     )}
                   </tbody>
@@ -413,8 +413,8 @@ export default function AdminDashboard() {
             </div>
 
             {/* Monthly Sales Table (Col 6) */}
-            <div className="lg:col-span-6 glass rounded-3xl p-6 border border-white/5">
-              <h3 className="text-lg font-bold text-white mb-4 flex items-center space-x-2">
+            <div className="lg:col-span-6 glass rounded-3xl p-6 border border-border">
+              <h3 className="text-lg font-bold text-heading mb-4 flex items-center space-x-2">
                 <TrendingUp className="w-5 h-5 text-brand-500" />
                 <span>Monthly Sales Summary</span>
               </h3>
@@ -422,23 +422,23 @@ export default function AdminDashboard() {
               <div className="overflow-x-auto max-h-[300px] no-scrollbar">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500 pb-3">
+                    <tr className="border-b border-border text-[11px] font-bold uppercase tracking-wider text-muted pb-3">
                       <th className="py-2.5">Month</th>
                       <th className="py-2.5">Orders</th>
                       <th className="py-2.5 text-right">Revenue</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-white/5 text-sm">
+                  <tbody className="divide-y divide-border text-sm">
                     {salesReport.monthlySales?.map((mon) => (
-                      <tr key={mon.month} className="hover:bg-white/5 transition-colors text-slate-300">
+                      <tr key={mon.month} className="hover:bg-surface transition-colors text-body">
                         <td className="py-3 font-semibold">{mon.month}</td>
                         <td className="py-3">{mon.count}</td>
-                        <td className="py-3 text-right text-white font-extrabold">{formatCurrency(mon.revenue)}</td>
+                        <td className="py-3 text-right text-heading font-extrabold">{formatCurrency(mon.revenue)}</td>
                       </tr>
                     ))}
                     {salesReport.monthlySales?.length === 0 && (
                       <tr>
-                        <td colSpan="3" className="text-center py-6 text-slate-500">No monthly sales logs found</td>
+                        <td colSpan="3" className="text-center py-6 text-muted">No monthly sales logs found</td>
                       </tr>
                     )}
                   </tbody>
@@ -448,28 +448,28 @@ export default function AdminDashboard() {
           </div>
 
           {/* Popular Items Card */}
-          <div className="glass rounded-3xl p-6 border border-white/5">
-            <h3 className="text-lg font-bold text-white mb-4">Top-Selling Menu Items</h3>
+          <div className="glass rounded-3xl p-6 border border-border">
+            <h3 className="text-lg font-bold text-heading mb-4">Top-Selling Menu Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500 pb-3">
+                  <tr className="border-b border-border text-[11px] font-bold uppercase tracking-wider text-muted pb-3">
                     <th className="py-3">Dish Name</th>
                     <th className="py-3">Quantity Sold</th>
                     <th className="py-3 text-right">Total Revenue</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 text-sm text-slate-300">
+                <tbody className="divide-y divide-border text-sm text-body">
                   {salesReport.popularItems?.map((item) => (
-                    <tr key={item.id} className="hover:bg-white/5 transition-colors">
-                      <td className="py-3.5 font-semibold text-white">{item.name}</td>
+                    <tr key={item.id} className="hover:bg-surface transition-colors">
+                      <td className="py-3.5 font-semibold text-heading">{item.name}</td>
                       <td className="py-3.5">{item.quantity}</td>
                       <td className="py-3.5 text-right text-brand-500 font-extrabold">{formatCurrency(item.revenue)}</td>
                     </tr>
                   ))}
                   {salesReport.popularItems?.length === 0 && (
                     <tr>
-                      <td colSpan="3" className="text-center py-6 text-slate-500">No item popularity stats available</td>
+                      <td colSpan="3" className="text-center py-6 text-muted">No item popularity stats available</td>
                     </tr>
                   )}
                 </tbody>
@@ -483,7 +483,7 @@ export default function AdminDashboard() {
         <div className="space-y-6 animate-slide-up">
           {/* Menu Management Header */}
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-bold text-white">Menu Catalog ({menuItems.length} items)</h3>
+            <h3 className="text-lg font-bold text-heading">Menu Catalog ({menuItems.length} items)</h3>
             <button
               onClick={() => handleOpenMenuModal()}
               className="py-2.5 px-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs flex items-center space-x-1.5 transition-all shadow-md"
@@ -494,11 +494,11 @@ export default function AdminDashboard() {
           </div>
 
           {/* Menu Items Table */}
-          <div className="glass rounded-3xl overflow-hidden border border-white/5">
+          <div className="glass rounded-3xl overflow-hidden border border-border">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-950/60 border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500 py-3 px-6">
+                  <tr className="bg-surface/80 border-b border-border text-[11px] font-bold uppercase tracking-wider text-muted py-3 px-6">
                     <th className="py-4 px-6">Dish Name</th>
                     <th className="py-4 px-6">Category</th>
                     <th className="py-4 px-6">Price</th>
@@ -506,10 +506,10 @@ export default function AdminDashboard() {
                     <th className="py-4 px-6 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 text-sm text-slate-300">
+                <tbody className="divide-y divide-border text-sm text-body">
                   {menuItems.map((item) => (
-                    <tr key={item._id} className="hover:bg-white/5 transition-colors">
-                      <td className="py-4 px-6 font-semibold text-white">{item.name}</td>
+                    <tr key={item._id} className="hover:bg-surface transition-colors">
+                      <td className="py-4 px-6 font-semibold text-heading">{item.name}</td>
                       <td className="py-4 px-6">{item.category}</td>
                       <td className="py-4 px-6 font-semibold">{formatCurrency(item.price)}</td>
                       <td className="py-4 px-6">
@@ -543,7 +543,7 @@ export default function AdminDashboard() {
                   ))}
                   {menuItems.length === 0 && (
                     <tr>
-                      <td colSpan="5" className="text-center py-8 text-slate-500">Menu catalog is empty</td>
+                      <td colSpan="5" className="text-center py-8 text-muted">Menu catalog is empty</td>
                     </tr>
                   )}
                 </tbody>
@@ -555,13 +555,13 @@ export default function AdminDashboard() {
 
       {activeTab === 'orders' && (
         <div className="space-y-6 animate-slide-up">
-          <h3 className="text-lg font-bold text-white">Full Store Order Logs ({orders.length} orders)</h3>
+          <h3 className="text-lg font-bold text-heading">Full Store Order Logs ({orders.length} orders)</h3>
 
-          <div className="glass rounded-3xl overflow-hidden border border-white/5">
+          <div className="glass rounded-3xl overflow-hidden border border-border">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-950/60 border-b border-white/5 text-[11px] font-bold uppercase tracking-wider text-slate-500 py-3 px-6">
+                  <tr className="bg-surface/80 border-b border-border text-[11px] font-bold uppercase tracking-wider text-muted py-3 px-6">
                     <th className="py-4 px-6">Order ID</th>
                     <th className="py-4 px-6">Customer</th>
                     <th className="py-4 px-6">Items</th>
@@ -570,13 +570,13 @@ export default function AdminDashboard() {
                     <th className="py-4 px-6 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 text-sm text-slate-300">
+                <tbody className="divide-y divide-border text-sm text-body">
                   {orders.map((order) => (
-                    <tr key={order._id} className="hover:bg-white/5 transition-colors">
-                      <td className="py-4 px-6 font-mono text-xs font-semibold text-slate-400">{order._id}</td>
+                    <tr key={order._id} className="hover:bg-surface transition-colors">
+                      <td className="py-4 px-6 font-mono text-xs font-semibold text-muted">{order._id}</td>
                       <td className="py-4 px-6">
-                        <div className="font-bold text-white">{order.customerName}</div>
-                        <div className="text-[11px] text-slate-500">{order.customerPhone}</div>
+                        <div className="font-bold text-heading">{order.customerName}</div>
+                        <div className="text-[11px] text-muted">{order.customerPhone}</div>
                       </td>
                       <td className="py-4 px-6">
                         <ul className="text-xs space-y-0.5">
@@ -585,7 +585,7 @@ export default function AdminDashboard() {
                           ))}
                         </ul>
                       </td>
-                      <td className="py-4 px-6 font-bold text-white">{formatCurrency(order.totalAmount)}</td>
+                      <td className="py-4 px-6 font-bold text-heading">{formatCurrency(order.totalAmount)}</td>
                       <td className="py-4 px-6">
                         <span
                           className={`text-[10px] font-bold uppercase px-2 py-1 rounded-lg border ${
@@ -627,7 +627,7 @@ export default function AdminDashboard() {
                   ))}
                   {orders.length === 0 && (
                     <tr>
-                      <td colSpan="6" className="text-center py-8 text-slate-500">No store orders logged yet</td>
+                      <td colSpan="6" className="text-center py-8 text-muted">No store orders logged yet</td>
                     </tr>
                   )}
                 </tbody>
@@ -638,8 +638,8 @@ export default function AdminDashboard() {
       )}
 
       {activeTab === 'settings' && (
-        <div className="glass rounded-3xl p-6 md:p-8 border border-white/5 animate-slide-up max-w-3xl">
-          <h3 className="text-lg font-bold text-white mb-6 flex items-center space-x-2">
+        <div className="glass rounded-3xl p-6 md:p-8 border border-border animate-slide-up max-w-3xl">
+          <h3 className="text-lg font-bold text-heading mb-6 flex items-center space-x-2">
             <Store className="w-5 h-5 text-brand-500" />
             <span>Store Configuration</span>
           </h3>
@@ -647,62 +647,55 @@ export default function AdminDashboard() {
           <form onSubmit={handleUpdateSettings} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-400">Store Name</label>
+                <label className="text-xs font-semibold text-muted">Store Name</label>
                 <input
                   type="text"
                   required
                   value={storeName}
                   onChange={(e) => setStoreName(e.target.value)}
-                  className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                  className="w-full bg-surface border border-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-400">Customer Support Phone</label>
+                <label className="text-xs font-semibold text-muted">Customer Support Phone</label>
                 <input
                   type="text"
                   required
                   value={contactPhone}
                   onChange={(e) => setContactPhone(e.target.value)}
-                  className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                  className="w-full bg-surface border border-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                 />
               </div>
 
               
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-400">Flat Delivery Charge (₹)</label>
+                <label className="text-xs font-semibold text-muted">Flat Delivery Charge (₹)</label>
                 <input
                   type="number"
                   required
                   min="0"
                   value={deliveryCharge}
                   onChange={(e) => setDeliveryCharge(e.target.value)}
-                  className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
+                  className="w-full bg-surface border border-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-400">Announcement Bar Text</label>
+              <label className="text-xs font-semibold text-muted">Announcement Bar Text</label>
               <textarea
                 value={announcement}
                 onChange={(e) => setAnnouncement(e.target.value)}
                 placeholder="Announcements visible to customers on Menu page..."
                 rows="3"
-                className="w-full bg-slate-950 border border-white/10 rounded-2xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
-              ></textarea>
-            </div>
-
-            <div className="flex items-center space-x-3 bg-slate-950/80 p-4 border border-white/10 rounded-2xl max-w-sm">
-              <input
-                type="checkbox"
-                id="isStoreOpen"
+                  className="w-full bg-surface border border-border rounded-2xl py-3 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
                 checked={isStoreOpen}
                 onChange={(e) => setIsStoreOpen(e.target.checked)}
-                className="w-5 h-5 accent-brand-500 rounded border-white/10 cursor-pointer"
+                className="w-5 h-5 accent-brand-500 rounded border-border cursor-pointer"
               />
-              <label htmlFor="isStoreOpen" className="text-sm font-semibold text-slate-300 cursor-pointer select-none">
+              <label htmlFor="isStoreOpen" className="text-sm font-semibold text-body cursor-pointer select-none">
                 Accepting Orders (Store Open)
               </label>
             </div>
@@ -720,10 +713,10 @@ export default function AdminDashboard() {
       {/* Menu item modal (Create / Edit) */}
       {isMenuModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-white/10 rounded-3xl w-full max-w-lg p-6 md:p-8 animate-slide-up relative">
+          <div className="bg-surface border border-border rounded-3xl w-full max-w-lg p-6 md:p-8 animate-slide-up relative">
             <button
               onClick={() => setIsMenuModalOpen(false)}
-              className="absolute right-4 top-4 p-2 bg-white/5 hover:bg-white/10 rounded-xl text-slate-400 hover:text-white"
+              className="absolute right-4 top-4 p-2 bg-surface/80 hover:bg-surface/90 rounded-xl text-muted hover:text-heading"
             >
               <X className="w-5 h-5" />
             </button>
@@ -735,65 +728,65 @@ export default function AdminDashboard() {
             <form onSubmit={handleMenuSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Item Name</label>
+                  <label className="text-xs font-semibold text-muted">Item Name</label>
                   <input
                     type="text"
                     required
                     value={menuForm.name}
                     onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })}
-                    className="w-full bg-slate-950 border border-white/10 rounded-2xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
-                  />
+                      className="w-full bg-surface border border-border rounded-2xl py-2.5 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-muted">Category</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Pizza, Salad"
+                      value={menuForm.category}
+                      onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })}
+                      className="w-full bg-surface border border-border rounded-2xl py-2.5 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-muted">Price (₹)</label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      required
+                      min="0"
+                      value={menuForm.price}
+                      onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })}
+                      className="w-full bg-surface border border-border rounded-2xl py-2.5 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-muted">Image URL</label>
+                    <input
+                      type="url"
+                      value={menuForm.image}
+                      placeholder="https://..."
+                      onChange={(e) => setMenuForm({ ...menuForm, image: e.target.value })}
+                      className="w-full bg-surface border border-border rounded-2xl py-2.5 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-muted">Description</label>
+                    <textarea
+                      required
+                      rows="3"
+                      value={menuForm.description}
+                      onChange={(e) => setMenuForm({ ...menuForm, description: e.target.value })}
+                      className="w-full bg-surface border border-border rounded-2xl py-2.5 px-4 text-sm text-heading focus:outline-none focus:border-brand-500"
+                    ></textarea>
+                  </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Category</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Pizza, Salad"
-                    value={menuForm.category}
-                    onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })}
-                    className="w-full bg-slate-950 border border-white/10 rounded-2xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Price (₹)</label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    required
-                    min="0"
-                    value={menuForm.price}
-                    onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })}
-                    className="w-full bg-slate-950 border border-white/10 rounded-2xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-400">Image URL</label>
-                  <input
-                    type="url"
-                    value={menuForm.image}
-                    placeholder="https://..."
-                    onChange={(e) => setMenuForm({ ...menuForm, image: e.target.value })}
-                    className="w-full bg-slate-950 border border-white/10 rounded-2xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-400">Description</label>
-                <textarea
-                  required
-                  rows="3"
-                  value={menuForm.description}
-                  onChange={(e) => setMenuForm({ ...menuForm, description: e.target.value })}
-                  className="w-full bg-slate-950 border border-white/10 rounded-2xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-brand-500"
-                ></textarea>
-              </div>
-
-              <div className="flex items-center space-x-3 bg-slate-950/80 p-3.5 border border-white/10 rounded-2xl max-w-xs">
+                <div className="flex items-center space-x-3 bg-surface/90 p-3.5 border border-border rounded-2xl max-w-xs">
                 <input
                   type="checkbox"
                   id="isAvailable"
@@ -801,16 +794,16 @@ export default function AdminDashboard() {
                   onChange={(e) => setMenuForm({ ...menuForm, isAvailable: e.target.checked })}
                   className="w-5 h-5 accent-brand-500 rounded cursor-pointer"
                 />
-                <label htmlFor="isAvailable" className="text-sm font-semibold text-slate-300 cursor-pointer select-none">
+                <label htmlFor="isAvailable" className="text-sm font-semibold text-body cursor-pointer select-none">
                   Available in Stock
                 </label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/5">
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
                 <button
                   type="button"
                   onClick={() => setIsMenuModalOpen(false)}
-                  className="py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-semibold hover:bg-white/10"
+                  className="py-2.5 px-4 rounded-xl bg-surface border border-border text-body text-xs font-semibold hover:bg-surface/90"
                 >
                   Cancel
                 </button>

@@ -149,11 +149,11 @@ export default function TrackOrder() {
 
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
               <div>
-                <span className="text-xs text-slate-500 uppercase font-semibold">Order ID</span>
-                <p className="text-xs sm:text-sm font-mono font-bold text-slate-300">{order._id}</p>
+                <span className="text-xs text-muted uppercase font-semibold">Order ID</span>
+                <p className="text-xs sm:text-sm font-mono font-bold text-body">{order._id}</p>
               </div>
               <div className="sm:text-right">
-                <span className="text-xs text-slate-500 uppercase font-semibold">Status</span>
+                <span className="text-xs text-muted uppercase font-semibold">Status</span>
                 <div className="flex items-center sm:justify-end space-x-1.5 mt-1">
                   <div className={`w-2 h-2 rounded-full ${order.status === 'cancelled' ? 'bg-red-500' : 'bg-brand-500 animate-ping'}`}></div>
                   <span className={`text-sm font-extrabold capitalize ${order.status === 'cancelled' ? 'text-red-400' : 'text-brand-500'}`}>
@@ -173,7 +173,7 @@ export default function TrackOrder() {
                 {/* Desktop timeline tracker */}
                 <div className="relative hidden md:flex items-center justify-between">
                   {/* Background progress bar */}
-                  <div className="absolute left-0 top-6 w-full h-0.75 bg-white/5 -z-10"></div>
+                  <div className="absolute left-0 top-6 w-full h-0.75 bg-surface/80 -z-10"></div>
                   
                   {/* Colored progress bar */}
                   <div
@@ -203,7 +203,7 @@ export default function TrackOrder() {
                         <h4 className={`text-sm font-bold mt-3 ${isActive ? 'text-brand-500' : 'text-body'}`}>
                           {step.label}
                         </h4>
-                        <p className="text-[11px] text-slate-500 mt-1 max-w-30 leading-tight">
+                        <p className="text-[11px] text-muted mt-1 max-w-30 leading-tight">
                           {step.desc}
                         </p>
                       </div>
@@ -214,7 +214,7 @@ export default function TrackOrder() {
                 {/* Mobile list timeline tracker */}
                 <div className="md:hidden space-y-6 relative pl-8">
                   {/* Progress Line */}
-                  <div className="absolute left-4 top-2 bottom-2 w-0.5 bg-white/10"></div>
+                  <div className="absolute left-4 top-2 bottom-2 w-0.5 bg-surface/80"></div>
 
                   {statuses.map((step, idx) => {
                     const StepIcon = step.icon;
@@ -238,7 +238,7 @@ export default function TrackOrder() {
                           <h4 className={`text-sm font-bold ${isActive ? 'text-brand-500' : 'text-body'}`}>
                             {step.label}
                           </h4>
-                          <p className="text-xs text-slate-500 mt-0.5">{step.desc}</p>
+                          <p className="text-xs text-muted mt-0.5">{step.desc}</p>
                         </div>
                       </div>
                     );
@@ -252,7 +252,7 @@ export default function TrackOrder() {
           <div className="glass rounded-3xl p-6 md:p-8 border border-border">
             <h3 className="text-lg font-bold text-heading mb-4">Items Ordered</h3>
             
-            <div className="divide-y divide-white/5 space-y-3.5 pb-4">
+            <div className="divide-y divide-border space-y-3.5 pb-4">
               {order.items.map((item) => (
                 <div key={item._id} className="flex justify-between items-center text-sm pt-3.5">
                   <div className="flex items-center space-x-2">
@@ -266,7 +266,7 @@ export default function TrackOrder() {
               ))}
             </div>
 
-            <div className="flex justify-between items-center border-t border-white/5 pt-4">
+            <div className="flex justify-between items-center border-t border-border pt-4">
               <span className="text-sm text-body font-medium">Grand Total</span>
               <span className="text-lg font-extrabold text-brand-500">
                 {formatCurrency(order.totalAmount)}

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { ShoppingBag, Compass, Clock, ShieldAlert, LogOut, Menu, X, User } from 'lucide-react';
 
 export default function Navbar() {
   const { cart, auth, logoutUser } = useApp();
   const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -21,8 +22,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-brand-100/70 shadow-sm shadow-brand-500/5">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 h-20 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-brand-100/70 shadow-sm shadow-brand-500/5">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 h-20 flex items-center justify-between gap-6">
         <Link to="/" className="flex items-center space-x-3 select-none">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-500 to-brand-600 flex items-center justify-center shadow-brand-500/20 shadow-lg">
             <img className="w-7 h-7 rounded-xl" src="https://ik.imagekit.io/boks6a8adw/logo.jpg" alt="Cheesy Slice logo" />
@@ -32,6 +33,26 @@ export default function Navbar() {
             <p className="text-xs text-muted uppercase tracking-[0.2em]">Pizza</p>
           </div>
         </Link>
+
+        <div className="hidden lg:flex items-center gap-4">
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.to;
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold transition-all ${
+                  isActive
+                    ? 'bg-brand-500 text-white shadow-sm shadow-brand-500/20'
+                    : 'text-heading hover:bg-brand-50 hover:text-brand-600'
+                }`}
+              >
+                <link.icon className="w-4 h-4" />
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
+        </div>
 
         <div className="flex items-center gap-3">
           <Link
@@ -66,7 +87,17 @@ export default function Navbar() {
       {isOpen && (
         <div className="lg:hidden border-t border-brand-100/70 bg-white/95 backdrop-blur-xl">
           <div className="max-w-7xl mx-auto px-6 py-4 space-y-3">
-            <Link to="/login" onClick={() => setIsOpen(false)} className="block rounded-2xl bg-brand-50 px-4 py-3 text-sm font-semibold text-brand-600 text-center">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsOpen(false)}
+                className="block rounded-2xl bg-brand-50 px-4 py-3 text-sm font-semibold text-brand-600 text-center hover:bg-brand-100"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link to="/login" onClick={() => setIsOpen(false)} className="block rounded-2xl bg-brand-100 px-4 py-3 text-sm font-semibold text-brand-700 text-center hover:bg-brand-200">
               Staff Portal
             </Link>
           </div>

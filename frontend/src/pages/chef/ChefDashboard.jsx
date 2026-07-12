@@ -145,17 +145,17 @@ export default function ChefDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-16 animate-slide-up">
       {/* Header Panel */}
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-10 pb-6 border-b border-white/5">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-10 pb-6 border-b border-border">
         <div className="flex items-center space-x-3">
           <div className="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
             <ChefHat className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-3xl font-extrabold text-white">
+            <h1 className="text-3xl font-extrabold text-heading">
               Kitchen <span className="text-gradient-chef">Console</span>
             </h1>
-            <p className="text-xs text-slate-400">
-              Logged in as chef: <span className="text-slate-200 font-semibold">@{auth.user.username}</span>
+            <p className="text-xs text-muted">
+              Logged in as chef: <span className="text-body font-semibold">@{auth.user.username}</span>
             </p>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function ChefDashboard() {
             className={`p-2.5 rounded-xl border transition-all flex items-center space-x-2 text-xs font-semibold ${
               soundEnabled
                 ? 'bg-sky-600/10 border-sky-500/20 text-sky-400 hover:bg-sky-600/20'
-                : 'bg-white/5 border-white/5 text-slate-500 hover:bg-white/10'
+                : 'bg-surface border-border text-body hover:bg-surface/90'
             }`}
           >
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
@@ -188,15 +188,15 @@ export default function ChefDashboard() {
 
       {/* Queue Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <div className="glass rounded-2xl p-5 border border-white/5">
-          <span className="text-xs text-slate-400 font-medium">Incoming (Pending)</span>
-          <h4 className="text-3xl font-black mt-2 text-white">{pendingOrders.length}</h4>
+        <div className="glass rounded-2xl p-5 border border-border">
+          <span className="text-xs text-muted font-medium">Incoming (Pending)</span>
+          <h4 className="text-3xl font-black mt-2 text-heading">{pendingOrders.length}</h4>
         </div>
-        <div className="glass rounded-2xl p-5 border border-white/5">
+        <div className="glass rounded-2xl p-5 border border-border">
           <span className="text-xs text-sky-400 font-medium">Active (Preparing)</span>
           <h4 className="text-3xl font-black mt-2 text-sky-400">{preparingOrders.length}</h4>
         </div>
-        <div className="glass rounded-2xl p-5 border border-white/5">
+        <div className="glass rounded-2xl p-5 border border-border">
           <span className="text-xs text-emerald-400 font-medium">Ready (Awaiting Delivery)</span>
           <h4 className="text-3xl font-black mt-2 text-emerald-400">{readyOrders.length}</h4>
         </div>
@@ -206,12 +206,12 @@ export default function ChefDashboard() {
       {loading ? (
         <div className="text-center py-20">
           <div className="w-10 h-10 border-4 border-sky-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-400 text-sm">Synchronizing live queue...</p>
+          <p className="text-muted text-sm">Synchronizing live queue...</p>
         </div>
       ) : orders.length === 0 ? (
-        <div className="text-center py-20 bg-slate-900/30 border border-white/5 rounded-3xl">
-          <p className="text-slate-400 text-lg mb-2">Kitchen Queue is Empty</p>
-          <p className="text-slate-600 text-sm">New customer orders will appear here automatically.</p>
+        <div className="text-center py-20 bg-surface/80 border border-border rounded-3xl">
+          <p className="text-body text-lg mb-2">Kitchen Queue is Empty</p>
+          <p className="text-muted text-sm">New customer orders will appear here automatically.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -230,8 +230,8 @@ export default function ChefDashboard() {
               <div className="space-y-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="text-[10px] text-slate-500 uppercase font-semibold">Order ID</span>
-                    <h5 className="font-mono text-[11px] font-bold text-slate-400">{order._id.substring(18)}</h5>
+                    <span className="text-[10px] text-muted uppercase font-semibold">Order ID</span>
+                    <h5 className="font-mono text-[11px] font-bold text-muted">{order._id.substring(18)}</h5>
                   </div>
                   <span
                     className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-lg border ${
@@ -247,21 +247,21 @@ export default function ChefDashboard() {
                 </div>
 
                 <div className="space-y-1">
-                  <h4 className="font-bold text-white leading-tight">{order.customerName}</h4>
-                  <p className="text-xs text-slate-400 flex items-center space-x-1">
-                    <Clock className="w-3.5 h-3.5 text-slate-500" />
+                  <h4 className="font-bold text-heading leading-tight">{order.customerName}</h4>
+                  <p className="text-xs text-muted flex items-center space-x-1">
+                    <Clock className="w-3.5 h-3.5 text-muted" />
                     <span>Ordered {new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                   </p>
                 </div>
 
                 {/* Items List */}
-                <div className="bg-slate-950/60 rounded-2xl p-4 border border-white/5">
-                  <span className="text-[10px] text-slate-500 font-semibold block mb-2 uppercase tracking-wide">Menu Items</span>
+                <div className="bg-surface/90 rounded-2xl p-4 border border-border">
+                  <span className="text-[10px] text-muted font-semibold block mb-2 uppercase tracking-wide">Menu Items</span>
                   <ul className="space-y-2 text-sm">
                     {order.items.map((item, idx) => (
-                      <li key={idx} className="flex justify-between text-slate-300">
-                        <span className="font-semibold text-white">
-                          x{item.quantity} <span className="font-normal text-slate-300 ml-1.5">{item.name}</span>
+                      <li key={idx} className="flex justify-between text-body">
+                        <span className="font-semibold text-heading">
+                          x{item.quantity} <span className="font-normal text-body ml-1.5">{item.name}</span>
                         </span>
                       </li>
                     ))}
@@ -270,7 +270,7 @@ export default function ChefDashboard() {
               </div>
 
               {/* Action Buttons */}
-              <div className="mt-6 pt-5 border-t border-white/5 flex gap-3">
+              <div className="mt-6 pt-5 border-t border-border flex gap-3">
                 {order.status === 'pending' && (
                   <button
                     onClick={() => handleUpdateStatus(order._id, 'preparing')}
