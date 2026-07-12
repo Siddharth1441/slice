@@ -14,6 +14,8 @@ export default function MenuView() {
   const [addedItemIds, setAddedItemIds] = useState({});
 
   const storeStatusLabel = settings.isStoreOpen ? 'Store is open' : 'Store is closed';
+  const announcementText = settings.announcement?.trim();
+  const showAnnouncement = announcementText && !['Store is open', 'Store is closed'].includes(announcementText);
 
   useEffect(() => {
     fetchMenu();
@@ -82,9 +84,9 @@ export default function MenuView() {
                 {storeStatusLabel}
               </span>
 
-              {settings.announcement && settings.announcement !== storeStatusLabel && (
+              {showAnnouncement && (
                 <div className={`rounded-3xl border px-5 py-3 text-sm font-medium ${settings.isStoreOpen ? 'bg-success/10 border-success/20 text-success' : 'bg-error/10 border-error/20 text-error'}`}>
-                  {settings.announcement}
+                  {announcementText}
                 </div>
               )}
             </div>
