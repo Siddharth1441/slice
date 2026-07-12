@@ -75,10 +75,16 @@ export default function MenuView() {
               Wood-fired pizzas, juicy burgers and handmade pasta — delivered warm, fast and full of flavor. Your next favorite bite is one tap away.
             </p>
 
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex flex-col items-center gap-4">
               <span className={`inline-flex items-center rounded-full px-5 py-3 text-sm font-semibold ${settings.isStoreOpen ? 'bg-success/10 text-success' : 'bg-error/10 text-error'}`}>
-                {settings.isStoreOpen ? 'Store Open' : 'Store Closed'}
+                {settings.isStoreOpen ? 'Store is open' : 'Store is closed'}
               </span>
+
+              {settings.announcement && (
+                <div className={`rounded-3xl border px-5 py-3 text-sm font-medium ${settings.isStoreOpen ? 'bg-success/10 border-success/20 text-success' : 'bg-error/10 border-error/20 text-error'}`}>
+                  {settings.announcement}
+                </div>
+              )}
             </div>
 
             <div className="mt-8 w-full max-w-full sm:max-w-3xl mx-auto">
