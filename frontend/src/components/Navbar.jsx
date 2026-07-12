@@ -25,7 +25,7 @@ export default function Navbar() {
       {/* Brand Logo */}
       <Link to="/" className="flex items-center space-x-2 select-none group">
         <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-orange-400 flex items-center justify-center shadow-lg shadow-brand-600/30 transform group-hover:rotate-12 transition-transform duration-300">
-          <img className='rounded-2xl' src="./src/assets/logo.jpg" alt="" />
+          <img className='rounded-2xl' src="https://ik.imagekit.io/boks6a8adw/logo.jpg" alt="" />
         </div>
         <span className="text-xl font-bold font-display tracking-tight text-white group-hover:text-brand-500 transition-colors">
           cheesy slice<span className="text-brand-500"> pizza</span>

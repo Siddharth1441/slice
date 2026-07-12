@@ -282,7 +282,7 @@ export default function TrackOrder() {
                 </div>
               </div>
               <span className="text-xs font-semibold text-slate-300 bg-white/5 py-1.5 px-3 rounded-lg border border-white/5">
-                📞 +1 234 567 8900
+                📞 +916375851337
               </span>
             </div>
           </div>
