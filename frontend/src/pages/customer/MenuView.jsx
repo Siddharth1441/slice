@@ -108,7 +108,7 @@ export default function MenuView() {
       </section>
 
       <div className="mt-10 flex flex-col gap-4">
-        <div className="relative overflow-hidden rounded-[2rem] bg-brand-50/80 p-4 sm:p-5 shadow-[0_18px_50px_rgba(255,122,26,0.12)] border border-brand-100/80 w-full">
+        <div className="relative overflow-hidden rounded-4xl bg-brand-50/80 p-4 sm:p-5 shadow-[0_18px_50px_rgba(255,122,26,0.12)] border border-brand-100/80 w-full">
           <p className="text-xs sm:text-sm uppercase tracking-[0.22em] text-brand-500">Browse by category</p>
           <div className="mt-4 flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-start">
             {categories.map((cat) => (
