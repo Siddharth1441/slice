@@ -77,11 +77,16 @@ export default function ChefDashboard() {
   // Synthesize notification sound using Web Audio API (no external file needed!)
   const playNotificationSound = () => {
     try {
+      // Haptic Vibration - Max intensity pattern
+      if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200, 100, 300]); // 5 vibration pulses
+      }
+
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
       
-      // Tone 1
+      // Tone 1 - Increased volume and duration
       const osc1 = ctx.createOscillator();
       const gain1 = ctx.createGain();
       osc1.connect(gain1);
@@ -89,12 +94,12 @@ export default function ChefDashboard() {
       osc1.frequency.value = 523.25; // C5
       osc1.type = 'sine';
       gain1.gain.setValueAtTime(0, ctx.currentTime);
-      gain1.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.05);
-      gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+      gain1.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.05); // Increased to 0.5 (max volume)
+      gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8); // Extended to 0.8s
       osc1.start(ctx.currentTime);
-      osc1.stop(ctx.currentTime + 0.35);
+      osc1.stop(ctx.currentTime + 0.8); // Duration increased from 0.35s to 0.8s
 
-      // Tone 2 (Higher)
+      // Tone 2 (Higher) - Increased volume and duration
       setTimeout(() => {
         const osc2 = ctx.createOscillator();
         const gain2 = ctx.createGain();
@@ -103,11 +108,26 @@ export default function ChefDashboard() {
         osc2.frequency.value = 659.25; // E5
         osc2.type = 'sine';
         gain2.gain.setValueAtTime(0, ctx.currentTime);
-        gain2.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.05);
-        gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+        gain2.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.05); // Increased to 0.5 (max volume)
+        gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8); // Extended to 0.8s
         osc2.start(ctx.currentTime);
-        osc2.stop(ctx.currentTime + 0.35);
+        osc2.stop(ctx.currentTime + 0.8); // Duration increased from 0.35s to 0.8s
       }, 150);
+
+      // Tone 3 (Highest) - Added extra tone for more intensity
+      setTimeout(() => {
+        const osc3 = ctx.createOscillator();
+        const gain3 = ctx.createGain();
+        osc3.connect(gain3);
+        gain3.connect(ctx.destination);
+        osc3.frequency.value = 783.99; // G5
+        osc3.type = 'sine';
+        gain3.gain.setValueAtTime(0, ctx.currentTime);
+        gain3.gain.linearRampToValueAtTime(0.45, ctx.currentTime + 0.05);
+        gain3.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6);
+        osc3.start(ctx.currentTime);
+        osc3.stop(ctx.currentTime + 0.6);
+      }, 300);
     } catch (err) {
       console.warn('Audio Context block:', err);
     }
