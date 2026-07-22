@@ -128,6 +128,15 @@ export default function ChefDashboard() {
         osc3.start(ctx.currentTime);
         osc3.stop(ctx.currentTime + 0.6);
       }, 300);
+
+      // High Amplitude Voice Alert - Speech Synthesis
+      setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance('New Order');
+        utterance.pitch = 1.8; // High pitch voice
+        utterance.rate = 1.3; // Slightly faster
+        utterance.volume = 1.0; // Maximum volume
+        window.speechSynthesis.speak(utterance);
+      }, 500);
     } catch (err) {
       console.warn('Audio Context block:', err);
     }
